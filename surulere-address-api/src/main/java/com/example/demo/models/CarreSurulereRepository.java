@@ -17,4 +17,13 @@ public interface CarreSurulereRepository extends JpaRepository<CarreSurulere, St
 	Optional<AddressLookupProjection> findContainingAddress(
 			@Param("lat") double lat,
 			@Param("lon") double lon);
+
+	@Query(value = """
+			SELECT ST_Y(ST_Centroid(geom)) AS "latitude",
+			       ST_X(ST_Centroid(geom)) AS "longitude"
+			FROM carre_surulere
+			WHERE address_code = :code
+			LIMIT 1
+			""", nativeQuery = true)
+	Optional<AddressCenterProjection> findCenterByAddressCode(@Param("code") String code);
 }
