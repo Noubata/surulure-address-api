@@ -23,6 +23,6 @@ public class LookupService {
 	}
 
 	private LookupResponse toResponse(AddressLookupProjection address) {
-		return LookupResponse.found(address.getAddressCode(), address.getName());
+		return LookupResponse.found(address.getAddressCode());
 	}
 }

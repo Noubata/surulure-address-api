@@ -7,12 +7,12 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 public record LookupResponse(
 		boolean found,
 		@JsonProperty("address_code") String addressCode,
-		String quartier,
-		Integer arrondissement,
+		String state,
+		String lga,
 		String message) {
 
-	public static LookupResponse found(String addressCode, String quartier) {
-		return new LookupResponse(true, addressCode, quartier, 4, null);
+	public static LookupResponse found(String addressCode) {
+		return new LookupResponse(true, addressCode, "Lagos", "Surulere", null);
 	}
 
 	public static LookupResponse notFound() {
